@@ -1,6 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 
+
+// Pages
+import Home from './home.js';
+import About from './about.js';
+
 function Navbar() {
   return (
     <Router>
@@ -14,14 +19,6 @@ function Navbar() {
       </Routes>
     </Router>
   );
-}
-
-function Home() {
-  return <h1>Home Page</h1>;
-}
-
-function About() {
-  return <h1>About Page</h1>;
 }
 
 export default Navbar;
