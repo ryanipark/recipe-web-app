@@ -17,7 +17,7 @@ I will be making a recipe web application; it will allow for users to create/sha
 	  - Should be able to modify their own recipes
 
 
-**Extra features in the future**
+**Extra features in the future:**
  - Bookmark / Favorite recipes 
  - Users will have a reputation system for how much feedback they
    receive on their recipes
