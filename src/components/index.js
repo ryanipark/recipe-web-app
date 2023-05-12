@@ -6,7 +6,6 @@ function App() {
   return (
     <>
       <div><Navbar /></div>
-      Index Page outside of navbar
     </>
   );
 }
