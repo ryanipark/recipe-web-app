@@ -47,9 +47,6 @@ app.use(express.static(path.join(__dirname, 'public')));
  *
  *  * * * * * */
 app.post('/api/login', (req, res) => {
-  req.session.test = "Hello world";
-  console.log(req.session.test);
-
 
   // Establish database connection
   const db = dbConnect()
@@ -103,13 +100,6 @@ app.post('/api/login', (req, res) => {
  *
  *  * * * * * */
 app.get('/api/user', (req, res) => {
-  req.session.reload(function(err) {
-    // session updated
-  })
-  console.log(req.session.test);
-
-  console.log("grabbing user information")
-  console.log(req.session.user)
   if (req.session.user) {
     return res.json({ user: req.session.user });
   }
