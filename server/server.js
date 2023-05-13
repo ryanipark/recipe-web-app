@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const SQLiteStore = require('connect-sqlite3')(session);
 const cors = require('cors');
 
 /* * * * * * * * * * * * * * *     LOCAL UTILITY     * * * * * * * * * * * * * * */
@@ -13,15 +14,24 @@ const { dbConnect } = require('./databaseUtil');
 /* * * * * * * * * * * * * * *     SERVER SETTINGS     * * * * * * * * * * * * * * */
 const app = express();
 const port = 3000;
-app.use(cors({
-  origin: 'http://146.190.164.153:3001'
-}));
 
 /* * * * * * * * * * * * * * *     MIDDLEWARE     * * * * * * * * * * * * * * */
+app.use(cors({
+  origin: 'http://146.190.164.153:3001',
+  credentials: true,
+}));
+
 app.use(session({
-  secret: '4d2yxH7k',
+  store: new SQLiteStore({
+    db: 'sessions.db',
+    table: 'sessions',
+    dir: './',
+    concurrentDB: true
+  }),
+  secret: 'recipeX',
   resave: true,
   saveUninitialized: true,
+  cookie: { maxAge: 3600000 } // Will expire login after 1hr
 }));
 
 app.use(bodyParser.json());
@@ -37,6 +47,9 @@ app.use(express.static(path.join(__dirname, 'public')));
  *
  *  * * * * * */
 app.post('/api/login', (req, res) => {
+  req.session.test = "Hello world";
+  console.log(req.session.test);
+
 
   // Establish database connection
   const db = dbConnect()
@@ -56,22 +69,25 @@ app.post('/api/login', (req, res) => {
     }
 
     if (!user) {
+      console.log(`LOGIN: Someone tried to login with username: "${username}"`);
       return res.status(401).json({ message: 'Invalid username or password' });
     }
 
     bcrypt.compare(password, user.password_hash.toString(), (err, result) => {
       if (err) {
-        console.log(user)
+        console.log(user);
         console.error(err.message);
         return res.status(500).json({ message: 'Error checking password' });
       }
 
       if (result === true) { // If username is found and password matches set sesssion and confirm
         req.session.user = user;
-        console.log(`LOGIN: User ${username}, has logged in succesfully.`)
-        return res.json({ message: 'Login successful' });
+        console.log(req.session.user)
+        console.log("user logged")
+        console.log(`LOGIN: User "${username}", has logged in succesfully.`);
+        return res.status(200).json({ message: 'Login successful' });
       }
-
+      console.log(`LOGIN: "${username}" failed to login, wrong password.`);
       return res.status(401).json({ message: 'Cant find username/password' });
     });
   });
@@ -87,6 +103,13 @@ app.post('/api/login', (req, res) => {
  *
  *  * * * * * */
 app.get('/api/user', (req, res) => {
+  req.session.reload(function(err) {
+    // session updated
+  })
+  console.log(req.session.test);
+
+  console.log("grabbing user information")
+  console.log(req.session.user)
   if (req.session.user) {
     return res.json({ user: req.session.user });
   }
