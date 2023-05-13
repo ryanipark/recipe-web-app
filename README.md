@@ -2,8 +2,13 @@
 
 *This is a work in progress, features, tools and specifications are subject to change*
 
+**Tools currently used:**
+ - Express/Node server
+ - Webpack development React server
+ - Sqlite3 (Will most likely switch in future)
+
 **Brief Description:**  
-I will be making a recipe web application; it will allow for users to create/share/modify recipes. After the web application is set and done, I will also develop a mobile application.
+- I will be making a recipe web application; it will allow for users to create/share/modify recipes. After the web application is set and done, I will also develop a mobile application.
  
 **Some features:**
  - A recipe will include fields for the following:
