@@ -10,6 +10,7 @@ cursor.execute('''
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT NOT NULL UNIQUE,
         password_hash TEXT NOT NULL,
+        email TEXT NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 ''')
@@ -17,8 +18,8 @@ cursor.execute('''
 # Bcrypt to insert initial test user
 test_password_hash = bcrypt.hashpw(b"test", bcrypt.gensalt())
 
-sql = "INSERT INTO users (username, password_hash) VALUES (?, ?);"
-testUser = ("test", test_password_hash)
+sql = "INSERT INTO users (username, password_hash, email) VALUES (?, ?, ?);"
+testUser = ("test", test_password_hash, "test@gmail.com")
 
 cursor.execute(sql, testUser)
 
