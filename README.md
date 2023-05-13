@@ -29,6 +29,7 @@
 	 - At a certain reputation may have the chance to earn advertisement revenue when others visit their page
   - Allow for sharing of recipes over social media platforms
   - API for recipes to be imported into third party applications
-  - Session variables stored in database, for potential scale issues
+  - ~~Session variables stored in database, for potential scale issues~~
+  - Containerize using docker
     
     
