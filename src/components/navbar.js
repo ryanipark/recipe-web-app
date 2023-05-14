@@ -13,7 +13,7 @@ function Navbar() {
   return (
     <Router>
         <nav className="navbar">
-          <div className="logo">Logo</div>
+          <div className="logo">Logo goes here</div>
           <ul className="nav-links">
             <li><NavLink exact="true" to="/">Home</NavLink></li>
             <li><NavLink exact="true" to="/about">About</NavLink></li>

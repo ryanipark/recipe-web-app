@@ -28,6 +28,7 @@ function login() {
         })
         const userData = await userResponse.json();
         setUser(userData.user);
+        setLoginError(false);
       } else {
         // Login is bad, print error message to user
         setLoginError(true);
