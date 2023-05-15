@@ -12,27 +12,51 @@
   margin-right: 10px;
 }
 
-.login {
-  margin-left: auto;
-}
-
-.nav-links {
+.pages {
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.nav-links li {
+.pages li {
   margin: 0 10px;
 }
 
-.nav-links li a {
+.pages li a {
   color: #fff;
   text-decoration: none;
 }
 
-.nav-links li a:hover {
+.pages li a:hover {
   text-decoration: underline;
 }
 
+.user {
+  margin-left: auto;
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.user li {
+  margin: 0 10px;
+}
+
+.user li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.user li a:hover {
+  text-decoration: underline;
+}
+
+
+.user button {
+  padding: 2px 5px;
+  font-size: 14px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
