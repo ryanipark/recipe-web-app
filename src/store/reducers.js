@@ -1,4 +1,4 @@
-import { SET_USER } from './types'
+import { SET_USER , LOGOUT_USER } from './types'
 // Top/root level reducer
 const startingState = {}
 
@@ -8,7 +8,16 @@ function rootReducer(state = startingState, action) {
     case SET_USER:
         return {
             ...state,
-            user: action.payload,
+            user: {
+              username: action.payload.username,
+              email: action.payload.email,
+              created_at: action.payload.created_at
+            }
+        };
+      case LOGOUT_USER:
+        return {
+            ...state,
+            user: undefined,
         };
     default:
       return state;
