@@ -12,26 +12,7 @@ import checkSession from './utility/checkSession.js';
 
 
 function App() {
-
-  /*
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetch('http://146.190.164.153:3000/api/user', {
-          credentials: 'include'
-        });
-        const userData = await response.json();
-        if (userData.user) {
-          store.dispatch(setUser(userData.user));
-        }
-      } catch (error) {
-        console.error('Failed to fetch user data:', error);
-      }
-    };
-
-    fetchUser();
-  }, []);
-  */
+  // Check users session at the root
   checkSession();
 
   return (

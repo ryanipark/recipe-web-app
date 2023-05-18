@@ -6,10 +6,14 @@ function Profile() {
   const navigate = useNavigate();
   const user = useSelector(state => state.user);
 
+  // Need a system for user typing /proifle to 
+  // Currently navigation is handled by a protected route in navbar
+
+  /*
   if (!user) {
     navigate('/login');
     return null; // Return early if user is not available
-  }
+  } */
 
   return (
     <div>
