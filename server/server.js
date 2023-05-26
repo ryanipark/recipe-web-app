@@ -79,8 +79,7 @@ app.post('/api/login', (req, res) => {
 
       if (result === true) { // If username is found and password matches set sesssion and confirm
         req.session.user = user;
-        console.log(req.session.user)
-        console.log("user logged")
+        console.log(req.session.user) // Used for debugging
         console.log(`LOGIN: User "${username}", has logged in succesfully.`);
         return res.status(200).json({ message: 'Login successful' });
       }
@@ -105,6 +104,26 @@ app.get('/api/user', (req, res) => {
   }
 
   return res.status(401).json({ message: 'Unable to authorize' });
+});
+
+/*
+ *  Destroys a session for a current
+ *  user, I.E. logging them out.
+ *
+ *  * * * * * */
+app.get('/api/logout', (req, res) => {
+  console.log(req.session.user)
+  console.log(`LOGOUT: User "${req.session.user.username} has logged out successfully`);
+  req.session.destroy(err => {
+    if(err) {
+      console.log(`LOGOUT: User "${req.session.user.username}" failed to logout, Server issue.`);
+      console.log(err);
+      return res.status(500).send("Server error logging out");
+    }
+    // If no errors remove clients cookie
+    res.clearCookie('connect.sid');
+    res.status(200).send("Logged out");
+  });
 });
 
 
