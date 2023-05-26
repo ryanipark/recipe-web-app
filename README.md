@@ -31,5 +31,6 @@
   - API for recipes to be imported into third party applications
   - ~~Session variables stored in database, for potential scale issues~~
   - Containerize using docker
+  - Add api to upload images within a recipe to external site (Will most likely use imgur)
     
     
